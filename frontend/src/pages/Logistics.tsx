@@ -32,19 +32,19 @@ export const Logistics = () => {
       <PageHeader title="Ocorrências logísticas" description="Pedidos em preparação, envio e atraso com foco em SLA." />
       <div className="grid gap-4 sm:grid-cols-2">
         <Card>
-          <CardHeader title="Acompanhamento" action={<Truck className="h-5 w-5 text-brand-600" />} />
+          <CardHeader title="Acompanhamento" action={<Truck className="h-5 w-5 text-accent" />} />
           <CardContent>
-            <p className="text-2xl font-semibold text-zinc-950 dark:text-white">{data.length}</p>
-            <p className="mt-1 text-sm text-zinc-500 dark:text-zinc-400">Ocorrências em aberto</p>
+            <p className="text-2xl font-semibold text-ink">{data.length}</p>
+            <p className="mt-1 text-sm text-muted">Ocorrências em aberto</p>
           </CardContent>
         </Card>
         <Card>
-          <CardHeader title="Prazo crítico" action={<Clock className="h-5 w-5 text-red-500" />} />
+          <CardHeader title="Prazo crítico" action={<Clock className="h-5 w-5 text-neg" />} />
           <CardContent>
-            <p className="text-2xl font-semibold text-zinc-950 dark:text-white">
+            <p className="text-2xl font-semibold text-ink">
               {data.filter((item) => item.risk === 'critical').length}
             </p>
-            <p className="mt-1 text-sm text-zinc-500 dark:text-zinc-400">Pedidos exigindo ação</p>
+            <p className="mt-1 text-sm text-muted">Pedidos exigindo ação</p>
           </CardContent>
         </Card>
       </div>

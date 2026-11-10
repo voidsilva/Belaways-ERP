@@ -50,12 +50,12 @@ export const Orders = () => {
       header: 'Pedido',
       cell: (order) => (
         <div>
-          <p className="font-semibold tabular-nums text-zinc-950 dark:text-white">#{order.number}</p>
-          <p className="mt-1 text-xs text-zinc-500 dark:text-zinc-400">{formatDate(order.createdAt)}</p>
+          <p className="font-semibold tabular-nums text-ink">#{order.number}</p>
+          <p className="mt-1 text-xs text-muted">{formatDate(order.createdAt)}</p>
         </div>
       ),
     },
-    { header: 'Cliente', cell: (order) => <span className="font-medium text-zinc-800 dark:text-zinc-100">{order.customerName}</span> },
+    { header: 'Cliente', cell: (order) => <span className="font-medium text-ink">{order.customerName}</span> },
     { header: 'Valor', cell: (order) => <span className="font-semibold tabular-nums">{formatCurrency(order.total)}</span> },
     { header: 'Envio', cell: (order) => order.shippingMethod },
     { header: 'Situação', cell: (order) => <OrderStatusBadge status={order.status} /> },
@@ -65,7 +65,7 @@ export const Orders = () => {
       cell: (order) => (
         <Link
           to={`/orders/${order.id}`}
-          className="inline-flex h-11 w-11 items-center justify-center rounded-md text-zinc-500 transition-colors hover:bg-zinc-100 hover:text-zinc-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 dark:hover:bg-zinc-800 dark:hover:text-white"
+          className="inline-flex h-11 w-11 items-center justify-center rounded-full text-muted transition-colors hover:bg-chip hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
           aria-label={`Abrir pedido ${order.number}`}
           title="Abrir pedido"
         >
@@ -96,10 +96,10 @@ export const Orders = () => {
         }
       />
 
-      <section className="rounded-lg border border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-900" aria-label="Consulta de pedidos">
+      <section className="glass" aria-label="Consulta de pedidos">
         <div className="grid gap-3 p-3 md:grid-cols-[minmax(16rem,1fr)_13rem_auto]">
           <div className="relative">
-            <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-zinc-400" aria-hidden="true" />
+            <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-faint" aria-hidden="true" />
             <Input
               value={searchInput}
               onChange={(event) => setSearchInput(event.target.value)}
@@ -117,14 +117,14 @@ export const Orders = () => {
             <RefreshCw className={`h-4 w-4 ${ordersQuery.isFetching ? 'animate-spin' : ''}`} aria-hidden="true" />
           </Button>
         </div>
-        <div className="flex items-center gap-2 border-t border-zinc-100 px-4 py-3 text-xs text-zinc-500 dark:border-zinc-800 dark:text-zinc-400">
+        <div className="flex items-center gap-2 border-t border-line px-4 py-3 text-xs text-muted">
           <CalendarRange className="h-4 w-4" aria-hidden="true" />
           {rows.length} pedido(s) encontrado(s) nos últimos {days} dias
         </div>
       </section>
 
       {ordersQuery.isError ? (
-        <div className="rounded-lg border border-red-200 bg-red-50 px-4 py-10 text-center text-sm text-red-700 dark:border-red-900 dark:bg-red-950/40 dark:text-red-300">
+        <div className="rounded-control border border-neg/30 bg-neg/10 px-4 py-10 text-center text-sm text-neg">
           Não foi possível consultar os pedidos agora.
         </div>
       ) : (

@@ -18,8 +18,8 @@ export const Alerts = () => {
       header: 'Alerta',
       cell: (alert) => (
         <div className="min-w-72">
-          <p className="font-medium text-zinc-950 dark:text-white">{alert.title}</p>
-          <p className="mt-1 text-xs text-zinc-500 dark:text-zinc-400">{alert.description}</p>
+          <p className="font-medium text-ink">{alert.title}</p>
+          <p className="mt-1 text-xs text-muted">{alert.description}</p>
         </div>
       ),
     },

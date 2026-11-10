@@ -98,8 +98,8 @@ export const Users = () => {
       header: 'Usuario',
       cell: (user) => (
         <div>
-          <p className="font-medium text-zinc-950 dark:text-white">{user.fullName}</p>
-          <p className="text-xs text-zinc-500 dark:text-zinc-400">{user.email}</p>
+          <p className="font-medium text-ink">{user.fullName}</p>
+          <p className="text-xs text-muted">{user.email}</p>
         </div>
       ),
     },
@@ -134,11 +134,11 @@ export const Users = () => {
 
       <div className="grid gap-4 xl:grid-cols-2">
         <Card>
-          <CardHeader title="Adicionar pessoa" action={<UserPlus className="h-5 w-5 text-brand-600" />} />
+          <CardHeader title="Adicionar pessoa" action={<UserPlus className="h-5 w-5 text-accent" />} />
           <CardContent>
             <form onSubmit={handleCreate} className="grid gap-4 sm:grid-cols-2">
               <label className="block">
-                <span className="mb-1.5 block text-sm font-medium text-zinc-700 dark:text-zinc-200">Nome</span>
+                <span className="mb-1.5 block text-sm font-medium text-muted">Nome</span>
                 <Input
                   required
                   value={createForm.fullName}
@@ -146,7 +146,7 @@ export const Users = () => {
                 />
               </label>
               <label className="block">
-                <span className="mb-1.5 block text-sm font-medium text-zinc-700 dark:text-zinc-200">E-mail</span>
+                <span className="mb-1.5 block text-sm font-medium text-muted">E-mail</span>
                 <Input
                   required
                   type="email"
@@ -155,7 +155,7 @@ export const Users = () => {
                 />
               </label>
               <label className="block">
-                <span className="mb-1.5 block text-sm font-medium text-zinc-700 dark:text-zinc-200">Senha</span>
+                <span className="mb-1.5 block text-sm font-medium text-muted">Senha</span>
                 <Input
                   required
                   type="password"
@@ -164,7 +164,7 @@ export const Users = () => {
                 />
               </label>
               <label className="block">
-                <span className="mb-1.5 block text-sm font-medium text-zinc-700 dark:text-zinc-200">Permissao</span>
+                <span className="mb-1.5 block text-sm font-medium text-muted">Permissao</span>
                 <Select
                   value={createForm.role}
                   onChange={(event) =>
@@ -189,11 +189,11 @@ export const Users = () => {
         </Card>
 
         <Card>
-          <CardHeader title="Alterar acesso" action={<KeyRound className="h-5 w-5 text-brand-600" />} />
+          <CardHeader title="Alterar acesso" action={<KeyRound className="h-5 w-5 text-accent" />} />
           <CardContent>
             <form onSubmit={handleUpdate} className="grid gap-4 sm:grid-cols-2">
               <label className="block sm:col-span-2">
-                <span className="mb-1.5 block text-sm font-medium text-zinc-700 dark:text-zinc-200">Usuario</span>
+                <span className="mb-1.5 block text-sm font-medium text-muted">Usuario</span>
                 <Select
                   value={selectedId}
                   onChange={(event) => {
@@ -213,7 +213,7 @@ export const Users = () => {
                 </Select>
               </label>
               <label className="block">
-                <span className="mb-1.5 block text-sm font-medium text-zinc-700 dark:text-zinc-200">Nome</span>
+                <span className="mb-1.5 block text-sm font-medium text-muted">Nome</span>
                 <Input
                   value={editForm.fullName}
                   onChange={(event) => setEditForm((current) => ({ ...current, fullName: event.target.value }))}
@@ -221,7 +221,7 @@ export const Users = () => {
                 />
               </label>
               <label className="block">
-                <span className="mb-1.5 block text-sm font-medium text-zinc-700 dark:text-zinc-200">E-mail</span>
+                <span className="mb-1.5 block text-sm font-medium text-muted">E-mail</span>
                 <Input
                   type="email"
                   value={editForm.email}
@@ -230,7 +230,7 @@ export const Users = () => {
                 />
               </label>
               <label className="block">
-                <span className="mb-1.5 block text-sm font-medium text-zinc-700 dark:text-zinc-200">Nova senha</span>
+                <span className="mb-1.5 block text-sm font-medium text-muted">Nova senha</span>
                 <Input
                   type="password"
                   value={editForm.password}
@@ -239,7 +239,7 @@ export const Users = () => {
                 />
               </label>
               <label className="block">
-                <span className="mb-1.5 block text-sm font-medium text-zinc-700 dark:text-zinc-200">Permissao</span>
+                <span className="mb-1.5 block text-sm font-medium text-muted">Permissao</span>
                 <Select
                   value={editForm.role}
                   onChange={(event) =>
@@ -255,7 +255,7 @@ export const Users = () => {
                 </Select>
               </label>
               <label className="block">
-                <span className="mb-1.5 block text-sm font-medium text-zinc-700 dark:text-zinc-200">Status</span>
+                <span className="mb-1.5 block text-sm font-medium text-muted">Status</span>
                 <Select
                   value={editForm.status}
                   onChange={(event) =>

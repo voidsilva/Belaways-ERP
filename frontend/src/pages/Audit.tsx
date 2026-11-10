@@ -16,8 +16,8 @@ export const Audit = () => {
       header: 'Ação',
       cell: (log) => (
         <div className="min-w-72">
-          <p className="font-medium text-zinc-950 dark:text-white">{log.action}</p>
-          <p className="mt-1 text-xs text-zinc-500 dark:text-zinc-400">{log.description}</p>
+          <p className="font-medium text-ink">{log.action}</p>
+          <p className="mt-1 text-xs text-muted">{log.description}</p>
         </div>
       ),
     },

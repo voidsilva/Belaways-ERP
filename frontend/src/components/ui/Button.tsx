@@ -11,20 +11,17 @@ type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
 };
 
 const variants: Record<ButtonVariant, string> = {
-  primary:
-    'border border-brand-700 bg-brand-700 text-white hover:border-brand-800 hover:bg-brand-800 focus-visible:ring-brand-500 dark:border-brand-500 dark:bg-brand-500 dark:hover:border-brand-400 dark:hover:bg-brand-400',
+  primary: 'btn-primary',
   secondary:
-    'border border-zinc-200 bg-white text-zinc-800 hover:border-zinc-300 hover:bg-zinc-50 focus-visible:ring-brand-500 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-100 dark:hover:border-zinc-600 dark:hover:bg-zinc-800',
-  ghost:
-    'text-zinc-600 hover:bg-zinc-100 hover:text-zinc-950 focus-visible:ring-brand-500 dark:text-zinc-300 dark:hover:bg-zinc-800 dark:hover:text-white',
-  danger:
-    'bg-coral text-white hover:bg-red-600 focus-visible:ring-coral dark:bg-red-500 dark:hover:bg-red-400',
+    'bg-[var(--glass-a)] text-ink shadow-[inset_0_1px_0_var(--rim),inset_0_0_0_1px_var(--line),0_8px_20px_-12px_rgb(0_0_0/.35)] backdrop-blur-xl hover:bg-[var(--glass-b)] hover:text-accent',
+  ghost: 'text-muted hover:bg-chip hover:text-ink',
+  danger: 'bg-[rgb(var(--neg))] text-white hover:brightness-95',
 };
 
 const sizes: Record<ButtonSize, string> = {
-  sm: 'h-9 px-3 text-sm',
-  md: 'h-11 px-4 text-sm',
-  lg: 'h-12 px-5 text-base',
+  sm: 'h-9 px-3.5 text-[13px]',
+  md: 'h-11 px-5 text-sm',
+  lg: 'h-12 px-6 text-base',
   icon: 'h-11 w-11 p-0',
 };
 
@@ -34,7 +31,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       ref={ref}
       type={type}
       className={cn(
-        'inline-flex items-center justify-center gap-2 rounded-md font-semibold transition-colors duration-150 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 disabled:active:scale-100 dark:focus-visible:ring-offset-zinc-950',
+        'inline-flex items-center justify-center gap-2 rounded-full font-bold transition duration-300 ease-soft active:scale-[0.97] disabled:cursor-not-allowed disabled:opacity-50',
         variants[variant],
         sizes[size],
         className,

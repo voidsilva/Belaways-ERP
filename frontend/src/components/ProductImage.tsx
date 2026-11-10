@@ -66,7 +66,7 @@ export const ProductImage = ({
       {...props}
       src={source}
       alt={alt}
-      className={cn('bg-zinc-100 object-cover dark:bg-zinc-900', className)}
+      className={cn('bg-chip object-cover', className)}
       referrerPolicy="no-referrer"
       onError={(event) => {
         if (event.currentTarget.src !== fallback) event.currentTarget.src = fallback;
