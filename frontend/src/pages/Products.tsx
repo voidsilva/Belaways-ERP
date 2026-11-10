@@ -100,7 +100,7 @@ export const Products = () => {
       header: 'Produto',
       cell: (product) => (
         <div className="flex min-w-[20rem] items-center gap-3">
-          <div className="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-md border border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-950">
+          <div className="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-[12px] border border-line bg-white">
             <ProductImage
               imageUrl={product.imageUrl}
               category={product.category}
@@ -111,8 +111,8 @@ export const Products = () => {
             />
           </div>
           <div className="min-w-0">
-            <p className="line-clamp-2 font-semibold leading-5 text-zinc-950 dark:text-white">{product.name}</p>
-            <p className="mt-1 truncate text-xs text-zinc-500 dark:text-zinc-400">
+            <p className="line-clamp-2 font-semibold leading-5 text-ink">{product.name}</p>
+            <p className="mt-1 truncate text-xs text-muted">
               SKU {product.sku || 'não informado'}{product.brand ? ` · ${product.brand}` : ''}
             </p>
           </div>
@@ -124,7 +124,7 @@ export const Products = () => {
       cell: (product) => (
         <div className="space-y-1.5">
           {statusBadge(product.status)}
-          <p className="max-w-44 truncate text-xs text-zinc-500 dark:text-zinc-400">
+          <p className="max-w-44 truncate text-xs text-muted">
             {product.category || 'Sem categoria'}
           </p>
         </div>
@@ -135,7 +135,7 @@ export const Products = () => {
       cell: (product) => (
         <div className="space-y-1.5 tabular-nums">
           {stockBadge(product)}
-          <p className="text-xs text-zinc-500 dark:text-zinc-400">
+          <p className="text-xs text-muted">
             {product.stock ?? 'n/i'} un. · mín. {product.minimumStock}
           </p>
         </div>
@@ -145,9 +145,9 @@ export const Products = () => {
       header: 'Preço',
       cell: (product) => (
         <div className="tabular-nums">
-          <p className="font-semibold text-zinc-950 dark:text-white">{formatCurrency(product.price)}</p>
+          <p className="font-semibold text-ink">{formatCurrency(product.price)}</p>
           {product.promotionalPrice !== null ? (
-            <p className="mt-1 text-xs text-emerald-700 dark:text-emerald-300">
+            <p className="mt-1 text-xs text-pos">
               Promo {formatCurrency(product.promotionalPrice)}
             </p>
           ) : null}
@@ -157,7 +157,7 @@ export const Products = () => {
     {
       header: 'Sincronizado',
       cell: (product) => (
-        <span className="whitespace-nowrap text-xs text-zinc-500 dark:text-zinc-400">
+        <span className="whitespace-nowrap text-xs text-muted">
           {formatDate(product.syncedAt ?? product.updatedAt)}
         </span>
       ),
@@ -167,7 +167,7 @@ export const Products = () => {
       cell: (product) => (
         <Link
           to={`/products/${product.id}`}
-          className="inline-flex h-11 w-11 items-center justify-center rounded-md text-zinc-500 transition-colors hover:bg-zinc-100 hover:text-zinc-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 dark:hover:bg-zinc-800 dark:hover:text-white"
+          className="inline-flex h-11 w-11 items-center justify-center rounded-full text-muted transition-colors hover:bg-chip hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
           aria-label={`Abrir ${product.name}`}
           title="Abrir produto"
         >
@@ -178,10 +178,10 @@ export const Products = () => {
   ];
 
   const catalogStats = [
-    { label: 'Ativos no catálogo', value: summary?.total ?? 0, icon: PackageCheck, tone: 'text-brand-700 dark:text-brand-300' },
-    { label: 'Com imagem', value: summary?.withImage ?? 0, icon: Sparkles, tone: 'text-sky-700 dark:text-sky-300' },
-    { label: 'Com saldo lido', value: summary?.withStock ?? 0, icon: Boxes, tone: 'text-emerald-700 dark:text-emerald-300' },
-    { label: 'Precisam de atenção', value: (summary?.lowStock ?? 0) + (summary?.outOfStock ?? 0), icon: AlertTriangle, tone: 'text-amber-700 dark:text-amber-300' },
+    { label: 'Ativos no catálogo', value: summary?.total ?? 0, icon: PackageCheck, tone: 'text-accent' },
+    { label: 'Com imagem', value: summary?.withImage ?? 0, icon: Sparkles, tone: 'text-info' },
+    { label: 'Com saldo lido', value: summary?.withStock ?? 0, icon: Boxes, tone: 'text-pos' },
+    { label: 'Precisam de atenção', value: (summary?.lowStock ?? 0) + (summary?.outOfStock ?? 0), icon: AlertTriangle, tone: 'text-warn' },
   ];
 
   return (
@@ -206,29 +206,29 @@ export const Products = () => {
         }
       />
 
-      <section className="overflow-hidden rounded-lg border border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-900" aria-label="Pulso do catálogo">
-        <div className="flex flex-col gap-3 border-b border-zinc-100 bg-zinc-50/70 px-4 py-3 dark:border-zinc-800 dark:bg-zinc-950/40 sm:flex-row sm:items-center sm:justify-between">
+      <section className="overflow-hidden glass" aria-label="Pulso do catálogo">
+        <div className="flex flex-col gap-3 border-b border-line bg-chip px-4 py-3 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex items-center gap-2 text-sm">
-            <span className={`h-2 w-2 rounded-full ${isCatalogFresh ? 'bg-emerald-500' : 'bg-amber-500'}`} aria-hidden="true" />
-            <span className="font-medium text-zinc-900 dark:text-zinc-100">Pulso do catálogo</span>
-            <span className="text-zinc-500 dark:text-zinc-400">
+            <span className={`h-2 w-2 rounded-full ${isCatalogFresh ? 'bg-pos' : 'bg-warn'}`} aria-hidden="true" />
+            <span className="font-medium text-ink">Pulso do catálogo</span>
+            <span className="text-muted">
               {summary?.lastSyncAt ? `última alteração recebida ${formatRelativeTime(summary.lastSyncAt)}` : 'sem sincronização registrada'}
             </span>
           </div>
           <div className="flex items-center gap-3">
             {syncProducts.isSuccess ? (
-              <span className="text-xs font-medium text-emerald-700 dark:text-emerald-300">
+              <span className="text-xs font-medium text-pos">
                 {syncProducts.data.unavailableSources?.length
                   ? 'Atualização parcial; extensão de tempo real indisponível'
                   : `${syncProducts.data.totalProducts} produto(s) recebido(s)`}
               </span>
             ) : null}
             {syncProducts.isError ? (
-              <span className="text-xs font-medium text-red-700 dark:text-red-300">Não foi possível consultar a Olist agora.</span>
+              <span className="text-xs font-medium text-neg">Não foi possível consultar a Olist agora.</span>
             ) : null}
             <button
               type="button"
-              className="text-xs font-semibold text-brand-700 underline-offset-4 hover:underline disabled:opacity-50 dark:text-brand-300"
+              className="text-xs font-semibold text-accent underline-offset-4 hover:underline disabled:opacity-50"
               onClick={handleFullSync}
               disabled={syncProducts.isPending}
             >
@@ -236,23 +236,23 @@ export const Products = () => {
             </button>
           </div>
         </div>
-        <div className="grid grid-cols-2 divide-x divide-y divide-zinc-100 dark:divide-zinc-800 lg:grid-cols-4 lg:divide-y-0">
+        <div className="grid grid-cols-2 divide-x divide-y divide-line lg:grid-cols-4 lg:divide-y-0">
           {catalogStats.map(({ label, value, icon: Icon, tone }) => (
             <div key={label} className="flex min-h-24 items-center gap-3 px-4 py-4 sm:px-5">
               <Icon className={`h-5 w-5 shrink-0 ${tone}`} aria-hidden="true" />
               <div className="min-w-0">
-                <p className="text-xl font-semibold tabular-nums text-zinc-950 dark:text-white">{formatNumber(value)}</p>
-                <p className="truncate text-xs text-zinc-500 dark:text-zinc-400">{label}</p>
+                <p className="text-xl font-semibold tabular-nums text-ink">{formatNumber(value)}</p>
+                <p className="truncate text-xs text-muted">{label}</p>
               </div>
             </div>
           ))}
         </div>
       </section>
 
-      <section className="rounded-lg border border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-900" aria-label="Filtros do catálogo">
+      <section className="glass" aria-label="Filtros do catálogo">
         <div className="grid gap-3 p-3 md:grid-cols-[minmax(16rem,1fr)_11rem_11rem_12rem]">
           <div className="relative">
-            <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-zinc-400" aria-hidden="true" />
+            <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-faint" aria-hidden="true" />
             <Input
               value={searchInput}
               onChange={(event) => setSearchInput(event.target.value)}
@@ -278,7 +278,7 @@ export const Products = () => {
             <option value="price">Maior preço</option>
           </Select>
         </div>
-        <div className="flex flex-col gap-2 border-t border-zinc-100 px-4 py-3 text-xs text-zinc-500 dark:border-zinc-800 dark:text-zinc-400 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex flex-col gap-2 border-t border-line px-4 py-3 text-xs text-muted sm:flex-row sm:items-center sm:justify-between">
           <span className="inline-flex items-center gap-2">
             <ArrowDownAZ className="h-4 w-4" aria-hidden="true" />
             {meta ? `${formatNumber(meta.total)} resultado(s) · página ${meta.page} de ${meta.totalPages}` : 'Preparando catálogo'}
@@ -289,7 +289,7 @@ export const Products = () => {
 
       <div className={productsQuery.isFetching && !productsQuery.isLoading ? 'opacity-70 transition-opacity' : ''} aria-busy={productsQuery.isFetching}>
         {productsQuery.isError ? (
-          <div className="rounded-lg border border-red-200 bg-red-50 px-4 py-10 text-center text-sm text-red-700 dark:border-red-900 dark:bg-red-950/40 dark:text-red-300">
+          <div className="rounded-control border border-neg/30 bg-neg/10 px-4 py-10 text-center text-sm text-neg">
             Não foi possível carregar o catálogo. Tente novamente em alguns instantes.
           </div>
         ) : (
@@ -301,13 +301,13 @@ export const Products = () => {
         )}
       </div>
 
-      <div className="flex items-center justify-between border-t border-zinc-200 pt-4 dark:border-zinc-800">
-        <p className="text-xs text-zinc-500 dark:text-zinc-400">Resultados da consulta atual</p>
+      <div className="flex items-center justify-between border-t border-line pt-4">
+        <p className="text-xs text-muted">Resultados da consulta atual</p>
         <div className="flex items-center gap-2">
           <Button variant="secondary" size="icon" disabled={!meta || meta.page <= 1 || productsQuery.isFetching} onClick={() => updateParams({ page: String(page - 1) }, false)} aria-label="Página anterior" title="Página anterior">
             <ChevronLeft className="h-4 w-4" aria-hidden="true" />
           </Button>
-          <span className="min-w-20 text-center text-sm font-medium tabular-nums text-zinc-700 dark:text-zinc-200">
+          <span className="min-w-20 text-center text-sm font-medium tabular-nums text-muted">
             {meta ? `${meta.page} / ${meta.totalPages}` : '—'}
           </span>
           <Button variant="secondary" size="icon" disabled={!meta || meta.page >= meta.totalPages || productsQuery.isFetching} onClick={() => updateParams({ page: String(page + 1) }, false)} aria-label="Próxima página" title="Próxima página">
